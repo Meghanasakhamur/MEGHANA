@@ -1,0 +1,127 @@
+<mvc:View
+    controllerName="ui.view2.project3.controller.project3"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core" >
+
+        <App id="app">
+        <Page id="page"  showHeader="false">
+        <f:SimpleForm id="SimpleFormChange480_12120"
+            editable="true"
+            layout="ResponsiveGridLayout"
+            title="Employee Details"
+            labelSpanXL="4"
+            labelSpanL="4"
+            labelSpanM="12"
+            labelSpanS="12"
+            adjustLabelSpan="false"
+            emptySpanXL="0"
+            emptySpanL="0"
+            emptySpanM="0"
+            emptySpanS="0"
+            columnsXL="2"
+            columnsL="2"
+            columnsM="1"
+            singleContainerFullSize="false" >
+                <core:Title id="2" text="Personal" />
+                <Label id="4" text="Name" labelFor="inputName" required="true" />
+                <Input id="FName" placeholder="please enter your first name" value="{EmpModel>/Employee/FName}" change="onChangeFName"
+                valueState="{None}" valueStateText="{EmpModel>/EmployeeValueState/FName_VST}"/>
+                <Input id="LName" placeholder="Please enter your last name" value="{EmpModel>/Employee/LName}" />
+                <Label id="12" text="Email" labelFor="inputEmail" required="true" />
+                <Input id="inputEmail" placeholder="Please enter your email" value="{EmpModel>/Employee/Email}" />
+                <Label id="7"  text="MobileNumber" labelFor="inputMobileNumber" required="true" />
+                <Input id="inputMobileNumber" placeholder="Please enter your mobile number" value="{EmpModel>/Employee/MobileNumber}" maxLength="10" change="onChangeMobileNumber" />
+                <Label id="9" text="Gender" labelFor="grb3" required="true"/>
+                <RadioButtonGroup id="grb3" columns="3" select="onSelectGender" >
+                <RadioButton id="RBG-1" text="Male"  />
+                <RadioButton id="RBG-2" text="Female"/>
+                <RadioButton id="RBG-3" text="Other"/>
+                </RadioButtonGroup>
+                <Label id="dob" text="DOB" labelFor="date"/>
+                 <DatePicker 
+                          id="date"
+                          placeholder="please enter your DOB"
+                          change="handleChanger"/>  
+                        
+                <core:Title id="6" text="Address" />
+                <Label id="3" text="H.No" labelFor="inputH.No" />
+                <Input id="inputH.No" placeholder="Please enter your house number" />
+                <Label id="8" text="LandMark" labelFor="inputLandMark" />
+                <Input id="inputLandMark" placeholder="Please enter your landmark" />
+                <Label id="1" text="Pincode" labelFor="inputPincode" />
+                <Input id="inputPincode" placeholder="Please enter your pincode" />
+        </f:SimpleForm>
+        <Table id="idProductsTable" items="{EmpModel>/EmployeeList}" >
+            <columns>
+                  <Column id="c1">
+                      <Text id="t1" text="Employee id"/>
+                  </Column>
+                  <Column id="c2">
+                      <Text id="t2" text="Employee Name"/>
+                  </Column>
+                  <Column id="c3">
+                         <Text id="t3" text="Employee Email"/>
+                  </Column>
+                  <Column id="c4">
+                        <Text id="t4" text="Employee MobileNumber"/>
+                  </Column>
+                  <Column id="c5">
+                          <Text id="t5" text="Gender"/>
+                  </Column>
+                  <Column id="c6">
+                        <Text id="t6" text="H.No"/>
+                  </Column>
+                  <Column id="c7">
+                          <Text id="t7" text="LandMark"/>
+                  </Column>
+                  <Column id="c8">
+                      <Text id="t8" text="Pincode"/>
+                  </Column>
+                  <Column id="c9">
+                  <Text id="t9" text="Action"/>
+                  </Column>
+            </columns>
+            <items>
+                <ColumnListItem id="CL">
+                 <cells>
+                    <Text id="tt1" text="{EmpModel>Employee_id}" ></Text>
+                   <!-- <Text id="tt2" text="{EmpModel>FName} {EmpModel>LName}"> </Text>  -->
+ 
+                    <Text id="tt2" text="{parts: [
+                                                {path :'EmpModel>FName'},
+                                                {path :'EmpModel>LName'},
+                                                {path :'EmpModel>Gender'}
+                                                ], 
+                                                formatter: '.MyFormatter'
+                                        }" ></Text>
+                    
+                    <Text id="tt3" text="{EmpModel>Email}" ></Text>
+                    <ObjectNumber id="tt4" number="{EmpModel>MobileNumber}"  state="{
+                        path: 'EmpModel>MobileNumber',
+                        formatter:'.ValidateMobileNum'
+                      }"></ObjectNumber>
+                    <!-- <Text id="ttx" text="{EmpModel>MobileNumber}" ></Text>  -->
+                    <Text id="tt5" text="{EmpModel>Gender}" ></Text>
+                    <Text id="tt6" text="{EmpModel>H.No}" ></Text>
+                    <Text id="tt7" text="{EmpModel>LandMark}" ></Text>  
+                    <Text id="tt8" text="{EmpModel>Pincode}" ></Text>  
+                    <Button id="idView" icon="sap-icon://show" press="onPressShow" tooltip="View"></Button>                
+                 </cells>
+                </ColumnListItem>
+            </items> 
+        </Table>
+          <footer>
+            <Toolbar id="0">
+            <ToolbarSpacer id="23"/>
+                <Button id="98" type="Emphasized" text="Save" press="onPressSave" />
+                <Button id="34" text="Clear" press="onPressClear" />
+            </Toolbar>
+          </footer> 
+        </Page>
+        </App>
+</mvc:View>
+
